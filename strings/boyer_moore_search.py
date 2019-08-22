@@ -25,23 +25,6 @@ class BoyerMooreSearch:
     def __init__(self, text, pattern):
         self.text, self.pattern = text, pattern
         self.textLen, self.patLen = len(text), len(pattern)
-    
-
-    def match_in_pattern(self, char):
-        """ finds the index of char in pattern in reverse order
-
-        Paremeters : 
-            char (chr): character to be searched
-        
-        Returns :
-            i (int): index of char from last in pattern
-            -1 (int): if char is not found in pattern 
-        """ 
-
-        for i in range(self.patLen-1, -1, -1):
-            if char == self.pattern[i]:
-                return i
-        return -1
 
 
     def mismatch_in_text(self, currentPos):
@@ -68,9 +51,6 @@ class BoyerMooreSearch:
             mismatch_index = self.mismatch_in_text(i)
             if mismatch_index == -1:
                 positions.append(i)
-            else:
-                match_index = self.match_in_pattern(self.text[mismatch_index])
-                i = mismatch_index - match_index   #shifting index
         return positions
 
  
